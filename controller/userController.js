@@ -137,8 +137,8 @@ export const postLogin = async (req, res) => {
       .cookie("loginCookie", token, {
         maxAge: einTag,
         httpOnly: true,
-        sameSite: "none",
-        secure: true,
+    //    sameSite: "none",
+     //   secure: true,
       })
       .send({
         auth: "eingeloggt",
