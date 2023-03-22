@@ -29,7 +29,7 @@ mongoose
   .connect(URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-  })
+	  })
   .then(() => console.log("mit MongoDB verbunden! 😃 "))
   .catch((err) => console.log("Verbinden mit MongoDB fehlgeschlagen. ❌", err));
 
@@ -40,19 +40,19 @@ const app = express();
 app.use(cookieParser());
 app.use(express.json());
 app.use(morgan("dev"));
-app.use(
-  cors({
-    origin: process.env.CLIENT || "http://localhost:3000",
-    credentials: true,
-  })
-);
+//app.use(
+//  cors({
+//    origin: process.env.CLIENT || "http://localhost:3000",
+//    credentials: true,
+//  })
+//);
 
 // Routes anlegen
-app.use("/user", userRouter);
-app.use("/userGuest", userGuestRouter);
-app.use("/event", eventRouter);
-app.use("/invitation", invitationRouter);
-app.use("/thanks", thanksRouter);
+app.use("/api/user", userRouter);
+app.use("/api/userGuest", userGuestRouter);
+app.use("/api/event", eventRouter);
+app.use("/api/invitation", invitationRouter);
+app.use("/api/thanks", thanksRouter);
 
 // 404
 app.use(pageNotFound);
