@@ -7,9 +7,7 @@ import sgMail from "@sendgrid/mail";
 
 const JWT_KEY = process.env.SECRET_JWT_KEY || "Default";
 const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
-const PORT = process.env.PORT || 4000;
-const CLIENT = process.env.CLIENT || 3000;
-const HOST = process.env.HOST;
+const CLIENT = process.env.CLIENT || "http://localhost";
 
 // GET - find all users
 export const getAllUsers = async (req, res, next) => {
@@ -57,13 +55,9 @@ export const postOneUser = async (req, res, next) => {
       to: newUser.email,
       from: "carola.zapp@gmx.net", // Change to your verified sender
       subject: "Email Verifizierung",
-      text: `Zur Verifizierung der email bitte auf diese Adresse gehen: ${HOST}:${PORT}/user/verify/${token}`,
-      html: `<p><a href="${HOST}:${PORT}/user/verify/${token}">"Hallo ${newUser.firstName}, verifiziere bitte deine email per klick!"</a></p>`,
+      text: `Zur Verifizierung der email bitte auf diese Adresse gehen: ${CLIENT}/user/verify/${token}`,
+      html: `<p><a href="${CLIENT}/user/verify/${token}">"Hallo ${newUser.firstName}, verifiziere bitte deine email per klick!"</a></p>`,
     };
-
-    // version1
-    // text: `Zur Verifizierung der email bitte auf diese Adresse gehen: https://be-dieparty.onrender.com:${PORT}/user/verify/${token}`,
-    // html: `<p><a href="https://be-dieparty.onrender.com:${PORT}/user/verify/${token}">"Hallo ${newUser.firstName}, verifiziere bitte deine email per klick!"</a></p>`,
 
     const response = await sgMail.send(mailmessage);
     console.log("response von sendgrid", response);
@@ -137,8 +131,6 @@ export const postLogin = async (req, res) => {
       .cookie("loginCookie", token, {
         maxAge: einTag,
         httpOnly: true,
-    //    sameSite: "none",
-     //   secure: true,
       })
       .send({
         auth: "eingeloggt",
