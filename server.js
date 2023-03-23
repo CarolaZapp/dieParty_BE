@@ -3,7 +3,6 @@ import * as dotenv from "dotenv";
 dotenv.config();
 import express from "express";
 import mongoose from "mongoose";
-import cors from "cors";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
 
@@ -29,7 +28,7 @@ mongoose
   .connect(URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-	  })
+  })
   .then(() => console.log("mit MongoDB verbunden! 😃 "))
   .catch((err) => console.log("Verbinden mit MongoDB fehlgeschlagen. ❌", err));
 
@@ -40,12 +39,6 @@ const app = express();
 app.use(cookieParser());
 app.use(express.json());
 app.use(morgan("dev"));
-//app.use(
-//  cors({
-//    origin: process.env.CLIENT || "http://localhost:3000",
-//    credentials: true,
-//  })
-//);
 
 // Routes anlegen
 app.use("/api/user", userRouter);
