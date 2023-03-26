@@ -7,7 +7,7 @@ import sgMail from "@sendgrid/mail";
 
 const JWT_KEY = process.env.SECRET_JWT_KEY || "Default";
 const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
-const CLIENT = process.env.CLIENT || "http://localhost";
+const HOST = process.env.HOST || "http://localhost";
 
 // GET - find all users
 export const getAllUsers = async (req, res, next) => {
@@ -55,8 +55,8 @@ export const postOneUser = async (req, res, next) => {
       to: newUser.email,
       from: "carola.zapp@gmx.net", // Change to your verified sender
       subject: "Email Verifizierung",
-      text: `Zur Verifizierung der email bitte auf diese Adresse gehen: ${CLIENT}/user/verify/${token}`,
-      html: `<p><a href="${CLIENT}/user/verify/${token}">"Hallo ${newUser.firstName}, verifiziere bitte deine email per klick!"</a></p>`,
+      text: `Zur Verifizierung der email bitte auf diese Adresse gehen: ${HOST}/user/verify/${token}`,
+      html: `<p><a href="${HOST}/user/verify/${token}">"Hallo ${newUser.firstName}, verifiziere bitte deine email per klick!"</a></p>`,
     };
 
     const response = await sgMail.send(mailmessage);
@@ -152,7 +152,9 @@ export const getVerifyEmail = async (req, res) => {
     const id = decodedToken._id;
     const user = await UserModel.findByIdAndUpdate(id, { isVerified: true });
     // D2 Seite!!!
-    res.redirect(`${CLIENT}/userLoginD2`);
+    res.send({ message: "email ist verifiziert" });
+    // res.redirect(`${CLIENT}/userLoginD2`);
+    // res.redirect(`http://localhost:5173/userLoginD2`);
     // oder gh-pages, render
   } catch (error) {
     res.status(500).send({ message: error.message });
