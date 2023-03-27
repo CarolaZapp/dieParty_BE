@@ -101,8 +101,7 @@ Guest lists & response management complete the package
   MONGODB = Insert Your MongoDB URI
   SECRET_JWT_KEY = Create a string by yourself
   SENDGRID_API_KEY= Insert your sendgrid API Key
-  CLIENT= frontend uri
-  HOST= backend uri
+  HOST= server IP
 
 - Type in terminal
   - npm i

@@ -152,10 +152,8 @@ export const getVerifyEmail = async (req, res) => {
     const id = decodedToken._id;
     const user = await UserModel.findByIdAndUpdate(id, { isVerified: true });
     // D2 Seite!!!
-    res.send({ message: "email ist verifiziert" });
-    // res.redirect(`${CLIENT}/userLoginD2`);
-    // res.redirect(`http://localhost:5173/userLoginD2`);
-    // oder gh-pages, render
+    // res.send({ message: "email ist verifiziert" });
+    res.redirect(`${HOST}/userLoginD2`);
   } catch (error) {
     res.status(500).send({ message: error.message });
   }
