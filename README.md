@@ -31,7 +31,6 @@ Guest lists & response management complete the package
 ## Used technologies
 
 - backend:
-
   - mongoDB
   - mongoose
   - express.js
@@ -41,15 +40,12 @@ Guest lists & response management complete the package
   - jsonwebtoken
   - cookieParser
   - @sendgrid/mail
-  - cors
   - morgan
 
 - upload storage:
-
   - firebase
 
 - frontend:
-
   - html5
   - css3
   - javaScript.js
