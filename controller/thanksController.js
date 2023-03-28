@@ -18,14 +18,6 @@ export const getThanks = async (req, res, next) => {
 // POST - create/ add one thanks
 export const postOneThanks = async (req, res, next) => {
   try {
-    // image upload
-    // const imagesObj = Object.keys(req.files).reduce((acc, el) => {
-    //   acc[
-    //     el
-    //   ] = `${process.env.HOST}:${process.env.PORT}/${req.files[el][0].path}`;
-    //   return acc;
-    // }, {});
-    // const myNewThanks = { ...req.body };
     console.log("req.body:", req.body);
     const user = await UserModel.findById(req.token.userId);
     const eventId = user.events;
