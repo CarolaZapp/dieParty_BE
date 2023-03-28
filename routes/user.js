@@ -3,7 +3,6 @@ const router = express.Router();
 
 import {
   userValidator,
-  userUpdateValidator,
 } from "../middleware/userValidator.js";
 import { validateRequest } from "../middleware/validator.js";
 import auth from "../middleware/auth.js";
@@ -30,6 +29,6 @@ router.route("/verify/:token").get(getVerifyEmail);
 router
   .route("/:id")
   .get(getOneUser)
-  .patch(userUpdateValidator, validateRequest, auth, updateOneUser);
+  .patch(validateRequest, auth, updateOneUser);
 
 export default router;

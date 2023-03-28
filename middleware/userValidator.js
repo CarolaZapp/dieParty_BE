@@ -39,10 +39,10 @@ export const userValidator = [
 
 // erweitern!!!!
 
-export const userUpdateValidator = [
-  body("firstName")
-    .optional()
-    .isAlpha("de-DE", { ignore: " -" })
-    .withMessage("Vorname enthält unzulässige Zeichen")
-    .trim(),
-];
+// export const userUpdateValidator = [
+//   body("firstName")
+//     .optional()
+//     .isAlpha("de-DE", { ignore: " -" })
+//     .withMessage("Vorname enthält unzulässige Zeichen")
+//     .trim(),
+// ];
