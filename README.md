@@ -97,6 +97,7 @@ Guest lists & response management complete the package
   MONGODB = Insert Your MongoDB URI
   SECRET_JWT_KEY = Create a string by yourself
   SENDGRID_API_KEY= Insert your sendgrid API Key
+  SENDGRID_EMAIL= Verified sendgrid sender mail adress
   HOST= server IP
 
 - Type in terminal
