@@ -162,7 +162,11 @@ export const getVerifyEmail = async (req, res) => {
     const verifyToken = req.params.token;
     const decodedVerifyToken = jwt.verify(verifyToken, JWT_KEY);
     const id = decodedVerifyToken._id;
-    const user = await UserModel.findByIdAndUpdate(id, { isVerified: true });
+    // test
+    const user = await UserModel.findById(id);
+    const updatedUser = await UserModel.findByIdAndUpdate(id, { ...user, isVerified: true });
+
+    // const user = await UserModel.findByIdAndUpdate(id, { isVerified: true });
     // D2 Seite!!!
     // res.send({ message: "email ist verifiziert" });
     res.redirect(`${HOST_FE}/userLoginD2`);
