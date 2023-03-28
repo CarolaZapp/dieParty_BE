@@ -24,7 +24,7 @@ router
   .post(userValidator, validateRequest, postOneUser);
 
 router.route("/login").post(postLogin);
-router.route("/verify/:token").get(getVerifyEmail);
+router.route("/verify/:verifyToken").get(getVerifyEmail);
 
 router
   .route("/:id")
