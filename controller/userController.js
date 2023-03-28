@@ -1,12 +1,14 @@
-import UserModel from "../models/userModel.js";
-import bcrypt from "bcrypt";
 import * as dotenv from "dotenv";
 dotenv.config();
+import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import sgMail from "@sendgrid/mail";
 
+import UserModel from "../models/userModel.js";
+
 const JWT_KEY = process.env.SECRET_JWT_KEY || "Default";
 const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
+const SENDGRID_EMAIL= process.env.SENDGRID_EMAIL;
 const HOST = process.env.HOST || "http://localhost";
 
 // GET - find all users
@@ -53,7 +55,7 @@ export const postOneUser = async (req, res, next) => {
     );
     const mailmessage = {
       to: newUser.email,
-      from: "carola.zapp@gmx.net", // Change to your verified sender
+      from: SENDGRID_EMAIL, // Change to your verified sender
       subject: "Email Verifizierung",
       text: `Zur Verifizierung der email bitte auf diese Adresse gehen: ${HOST}/user/verify/${token}`,
       html: `<p><a href="${HOST}/user/verify/${token}">"Hallo ${newUser.firstName}, verifiziere bitte deine email per klick!"</a></p>`,
