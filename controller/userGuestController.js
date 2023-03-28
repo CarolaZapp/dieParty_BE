@@ -45,7 +45,14 @@ export const postOneUserGuest = async (req, res, next) => {
       from: SENDGRID_EMAIL,
       subject: "Einladung",
       text: `Zur Einladung bitte auf diese Adresse gehen:${HOST}/invitationUser/${eventId}/${userGuestId}`,
-      html: `<p><a href="${HOST}/invitationUser/${eventId}/${userGuestId}">"Hallo ${newUserGuest.firstName}, hier geht es zu deiner Einladung zum Event ...  "</a> viel Freude damit ... </p>`,
+
+      html: `
+      <div> 
+      <p> Hallo ${newUserGuest.firstName}, </p>
+      <p> ich möchte Dich/Euch zu meinem Event einladen...</p>
+      <p><a href="${HOST}/invitationUser/${eventId}/${userGuestId}">Hier geht es zu deiner Einladung zum Event ...  "</a> viel Freude damit ... </p>
+      <p>Liebe Grüße<br>"${user.firstName}</p>
+      </div>`,
     };
     // oder doch nicht?
     const respo = await sgMail.send(mailmessage);

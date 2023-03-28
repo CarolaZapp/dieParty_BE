@@ -10,6 +10,7 @@ const JWT_KEY = process.env.SECRET_JWT_KEY || "Default";
 const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
 const SENDGRID_EMAIL= process.env.SENDGRID_EMAIL;
 const HOST = process.env.HOST || "http://localhost";
+const HOST_FE = process.env.HOST_FE || "http://localhost";
 
 // GET - find all users
 export const getAllUsers = async (req, res, next) => {
@@ -45,8 +46,9 @@ export const postOneUser = async (req, res, next) => {
       ...newUser,
       password: hashedPassword,
     });
+    // verify email
     sgMail.setApiKey(SENDGRID_API_KEY);
-    const token = jwt.sign(
+    const verifyToken = jwt.sign(
       { email: newUser.email, _id: createdUser._id },
       JWT_KEY,
       {
@@ -57,8 +59,15 @@ export const postOneUser = async (req, res, next) => {
       to: newUser.email,
       from: SENDGRID_EMAIL, // Change to your verified sender
       subject: "Email Verifizierung",
-      text: `Zur Verifizierung der email bitte auf diese Adresse gehen: ${HOST}/user/verify/${token}`,
-      html: `<p><a href="${HOST}/user/verify/${token}">"Hallo ${newUser.firstName}, verifiziere bitte deine email per klick!"</a></p>`,
+      text: `Zur Verifizierung der email bitte auf diese Adresse gehen: ${HOST}/user/verify/${verifyToken}`,
+
+      html:`
+      <div> 
+      <p> Hallo ${newUser.firstName}, </p>
+      <p> ich freue mich über dein Interesse an dieP@rty!</p>
+      <p><a href="${HOST}/user/verify/${verifyToken}"> Verifiziere bitte deine email per klick!"</a></p>
+      <p>Liebe Grüße<br>Carola</p>
+      </div>`,
     };
 
     const response = await sgMail.send(mailmessage);
@@ -69,6 +78,7 @@ export const postOneUser = async (req, res, next) => {
     next(error);
   }
 };
+
 
 // PATCH - update / change one user by ID
 export const updateOneUser = async (req, res, next) => {
@@ -149,13 +159,13 @@ export const postLogin = async (req, res) => {
 // GET Verify email
 export const getVerifyEmail = async (req, res) => {
   try {
-    const token = req.params.token;
-    const decodedToken = jwt.verify(token, JWT_KEY);
-    const id = decodedToken._id;
+    const verifyToken = req.params.token;
+    const decodedVerifyToken = jwt.verify(verifyToken, JWT_KEY);
+    const id = decodedVerifyToken._id;
     const user = await UserModel.findByIdAndUpdate(id, { isVerified: true });
     // D2 Seite!!!
     // res.send({ message: "email ist verifiziert" });
-    res.redirect(`${HOST}/userLoginD2`);
+    res.redirect(`${HOST_FE}/userLoginD2`);
   } catch (error) {
     res.status(500).send({ message: error.message });
   }
