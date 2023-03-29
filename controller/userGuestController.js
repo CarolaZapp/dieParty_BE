@@ -5,7 +5,7 @@ dotenv.config();
 import sgMail from "@sendgrid/mail";
 
 const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
-// const SENDGRID_EMAIL= process.env.SENDGRID_EMAIL;
+const SENDGRID_EMAIL= process.env.SENDGRID_EMAIL;
 const HOST = process.env.HOST || "http://localhost";
 
 // GET - find all users guest
