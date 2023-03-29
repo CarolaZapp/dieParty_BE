@@ -65,7 +65,7 @@ export const postOneUser = async (req, res, next) => {
       <div> 
       <p> Hallo ${newUser.firstName}, </p>
       <p> ich freue mich über dein Interesse an meiner App <strong>dieP@rty</strong>!</p>
-      <p><a href="${HOST}/user/verify/${verifyToken}"> Verifiziere bitte deine email per klick!"</a></p>
+      <p><a href="${HOST}/api/user/verify/${verifyToken}"> Verifiziere bitte deine email per klick!"</a></p>
       <p>Liebe Grüße<br>Carola</p>
       </div>`,
     };
