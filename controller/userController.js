@@ -10,7 +10,7 @@ const JWT_KEY = process.env.SECRET_JWT_KEY || "Default";
 const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
 const SENDGRID_EMAIL= process.env.SENDGRID_EMAIL;
 const HOST = process.env.HOST || "http://localhost";
-const HOST_FE = process.env.HOST_FE || "http://localhost";
+
 
 // GET - find all users
 export const getAllUsers = async (req, res, next) => {
@@ -59,7 +59,7 @@ export const postOneUser = async (req, res, next) => {
       to: newUser.email,
       from: SENDGRID_EMAIL, // Change to your verified sender
       subject: "Email Verifizierung",
-      text: `Zur Verifizierung der email bitte auf diese Adresse gehen: ${HOST}/user/verify/${verifyToken}`,
+      text: `Zur Verifizierung der email bitte auf diese Adresse gehen: ${HOST}/api/user/verify/${verifyToken}`,
 
       html:`
       <div> 
