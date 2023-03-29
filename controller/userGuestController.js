@@ -5,7 +5,7 @@ dotenv.config();
 import sgMail from "@sendgrid/mail";
 
 const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
-const SENDGRID_EMAIL= process.env.SENDGRID_EMAIL;
+// const SENDGRID_EMAIL= process.env.SENDGRID_EMAIL;
 const HOST = process.env.HOST || "http://localhost";
 
 // GET - find all users guest
@@ -39,10 +39,15 @@ export const postOneUserGuest = async (req, res, next) => {
     const newUserGuest = response.userGuest[response.userGuest.length - 1];
 
     const userGuestId = newUserGuest._id;
+// Idee
+    const userFromDB = await UserModel.findOne({ email: userData.email });
+    const sender = userFromDB.email
+// Idee
     sgMail.setApiKey(SENDGRID_API_KEY);
     const mailmessage = {
       to: newUserGuest.email,
-      from: SENDGRID_EMAIL,
+      // from: SENDGRID_EMAIL,
+      from: sender,
       subject: "Einladung",
       text: `Zur Einladung bitte auf diese Adresse gehen:${HOST}/invitationUser/${eventId}/${userGuestId}`,
 
