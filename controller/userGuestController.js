@@ -51,7 +51,7 @@ export const postOneUserGuest = async (req, res, next) => {
       <div> 
       <p> Hallo ${newUserGuest.firstName}, </p>
       <p> ich möchte Dich/Euch zu meinem Event einladen...</p>
-      <p><a href="${HOST}/api/invitationUser/${eventId}/${userGuestId}">Hier geht es zur Einladung...  </a> 
+      <p><a href="${HOST}/invitationUser/${eventId}/${userGuestId}">Hier geht es zur Einladung...  </a> 
       <br>viel Freude damit ... </p>
       <p>Liebe Grüße<br>${user.firstName}</p>
       </div>`,
