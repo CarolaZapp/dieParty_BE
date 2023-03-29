@@ -42,7 +42,8 @@ export const postOneUserGuest = async (req, res, next) => {
     sgMail.setApiKey(SENDGRID_API_KEY);
     const mailmessage = {
       to: newUserGuest.email,
-      from: SENDGRID_EMAIL,
+      // from: SENDGRID_EMAIL,
+      from: user.email,
       subject: "Einladung",
       text: `Zur Einladung bitte auf diese Adresse gehen:${HOST}/invitationUser/${eventId}/${userGuestId}`,
 
