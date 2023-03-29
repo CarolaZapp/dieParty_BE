@@ -1,4 +1,3 @@
-import ThanksModel from "../models/thanksModel.js";
 import EventModel from "../models/eventModel.js";
 import UserModel from "../models/userModel.js";
 
@@ -31,23 +30,3 @@ export const postOneThanks = async (req, res, next) => {
   }
 };
 
-//PATCH - update / change one thanks by ID
-export const updateOneThanks = async (req, res, next) => {
-  try {
-    const thanks = await ThanksModel.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      { new: true }
-    );
-    if (!thanks) {
-      const error = new Error(
-        `Eine Danksagung mit der id ${id} gibt es nicht!`
-      );
-      error.statusCode = 404;
-      throw error;
-    }
-    res.status(201).send(thanks);
-  } catch (error) {
-    next(error);
-  }
-};

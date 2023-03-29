@@ -6,12 +6,10 @@ import auth from "../middleware/auth.js";
 import {
   getEvent,
   postOneEvent,
-  updateOneEvent,
 } from "../controller/eventController.js";
 
 // Routes
 router.route("/").get(auth, getEvent).post(auth, postOneEvent);
 
-router.route("/:id").patch(auth, updateOneEvent);
 
 export default router;

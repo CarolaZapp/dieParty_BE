@@ -1,4 +1,3 @@
-import InvitationModel from "../models/invitationModel.js";
 import EventModel from "../models/eventModel.js";
 import UserModel from "../models/userModel.js";
 
@@ -29,21 +28,5 @@ export const postOneInvitation = async (req, res, next) => {
   }
 };
 
-//PATCH - update / change one invitation by ID
-export const updateOneInvitation = async (req, res, next) => {
-  try {
-    const invitation = await InvitationModel.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      { new: true }
-    );
-    if (!invitation) {
-      const error = new Error(`Eine Einladung mit der id ${id} gibt es nicht!`);
-      error.statusCode = 404;
-      throw error;
-    }
-    res.status(201).send(invitation);
-  } catch (error) {
-    next(error);
-  }
-};
+
+

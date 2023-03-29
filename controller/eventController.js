@@ -26,21 +26,3 @@ export const postOneEvent = async (req, res, next) => {
   }
 };
 
-// PATCH - update / change one event by ID
-export const updateOneEvent = async (req, res, next) => {
-  try {
-    const event = await EventModel.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    });
-    if (!event) {
-      const error = new Error(
-        `Eine Veranstaltung mit der id ${id} gibt es nicht!`
-      );
-      error.statusCode = 404;
-      throw error;
-    }
-    res.status(201).send(event);
-  } catch (error) {
-    next(error);
-  }
-};
