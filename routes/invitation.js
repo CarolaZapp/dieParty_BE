@@ -9,8 +9,8 @@ import {
 } from "../controller/invitationController.js";
 
 // Routes
-// router.route("/").get(auth, getInvitation).post(auth, postOneInvitation);
-router.route("/").get(getInvitation).post(auth, postOneInvitation);
+router.route("/").get(auth, getInvitation).post(auth, postOneInvitation);
+// router.route("/").get(getInvitation).post(auth, postOneInvitation);
 
 
 export default router;
