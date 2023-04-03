@@ -18,8 +18,8 @@ export const getInvitation = async (req, res, next) => {
 export const getUserInvitation = async (req, res, next) => {
   try {
     const event = await EventModel.findById(req.params.eventId);
-    const invitation = event.invitation;
-    res.status(200).send(invitation);
+    const userInvitation = event.invitation;
+    res.status(200).send(userInvitation);
   } catch (error) {
     next(error);
   }
