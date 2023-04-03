@@ -4,9 +4,9 @@ import UserModel from "../models/userModel.js";
 // GET - find one invitation
 export const getInvitation = async (req, res, next) => {
   try {
-    const user = await UserModel.findById(req.token.userId);
-    const eventId = user.events;
-    const event = await EventModel.findById(eventId);
+    // const user = await UserModel.findById(req.token.userId);
+    // const eventId = user.events;
+    const event = await EventModel.findById(req.params.eventId);
     const invitation = event.invitation;
     res.status(200).send(invitation);
   } catch (error) {
