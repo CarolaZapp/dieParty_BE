@@ -11,10 +11,9 @@ import {
 
 // Routes
 // router.route("/").get(auth, getInvitation).post(auth, postOneInvitation);
-router.route("/template").get(getInvitation)
+router.route("/").get(auth, getInvitation)
+router.route("/").post(auth, postOneInvitation);
 
 router.route("/:eventId").get(getUserInvitation);
-
-router.route("/").post(auth, postOneInvitation);
 
 export default router;
