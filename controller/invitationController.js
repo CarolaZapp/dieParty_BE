@@ -14,16 +14,27 @@ import UserModel from "../models/userModel.js";
 //   }
 // };
 
-// GET - find user invitation
+// GET - find one invitation
 export const getInvitation = async (req, res, next) => {
   try {
     const event = await EventModel.findById(req.params.eventId);
-    const userInvitation = event.invitation;
-    res.status(200).send(userInvitation);
+    const invitation = event.invitation;
+    res.status(200).send(invitation);
   } catch (error) {
     next(error);
   }
 };
+
+// GET - find user invitation
+// export const getUserInvitation = async (req, res, next) => {
+//   try {
+//     const event = await EventModel.findById(req.params.eventId);
+//     const userInvitation = event.invitation;
+//     res.status(200).send(userInvitation);
+//   } catch (error) {
+//     next(error);
+//   }
+// };
 
 // POST - create/ add one invitation
 export const postOneInvitation = async (req, res, next) => {
