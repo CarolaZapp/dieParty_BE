@@ -188,7 +188,7 @@ export const getVerifyEmail = async (req, res) => {
 
       html:`
       <div> 
-      <p> Hallo ${newUser.firstName}, </p>
+      <p> Hallo ${user.firstName}, </p>
       <p> deine Email Verifizierung war erfolgreich! </p>
       <p> Vielen Dank dafür und viel Spaß mit <strong>dieP@rty</strong>! </p>
       <p>Liebe Grüße<br>Carola</p>
