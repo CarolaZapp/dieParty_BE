@@ -9,7 +9,7 @@ import {
 } from "../controller/eventController.js";
 
 // Routes
-router.route("/").get(auth, getEvent).post(auth, postOneEvent);
+router.route("/").get(auth, getEvent).post(postOneEvent);
 
 
 export default router;
