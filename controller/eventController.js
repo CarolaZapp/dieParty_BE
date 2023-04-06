@@ -17,9 +17,9 @@ export const getEvent = async (req, res, next) => {
 export const postOneEvent = async (req, res, next) => {
   try {
     const newEvent = await EventModel.create(req.body);
-    await UserModel.findByIdAndUpdate(req.token.userId, {
-      events: newEvent._id,
-    });
+    // await UserModel.findByIdAndUpdate(req.token.userId, {
+    //   events: newEvent._id,
+    // });
     res.status(201).send(newEvent);
   } catch (error) {
     next(error);
