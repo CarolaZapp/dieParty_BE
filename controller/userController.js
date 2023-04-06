@@ -197,7 +197,7 @@ export const getVerifyEmail = async (req, res) => {
 
     const response = await sgMail.send(mailmessage);
     console.log("response von sendgrid", response);
-    res.status(201).send({ message: "email ist verifiziert" });
+    res.status(201).send({ approved: true });
 
   } catch (error) {
     res.status(500).send({ message: error.message });

@@ -56,12 +56,10 @@ export const postOneUserGuest = async (req, res, next) => {
       <p>Liebe Grüße<br>${user.firstName}</p>
       </div>`,
 
-
     };
-    // oder doch nicht?
     const respo = await sgMail.send(mailmessage);
     console.log("response von sendgrid", respo);
-    //
+
     res.status(201).send({ approved: true });
   } catch (error) {
     next(error);
