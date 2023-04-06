@@ -157,15 +157,47 @@ export const postLogin = async (req, res) => {
 };
 
 // GET Verify email
+// export const getVerifyEmail = async (req, res) => {
+//   try {
+//     const verifyToken = req.params.token;
+//     const decodedVerifyToken = jwt.verify(verifyToken, JWT_KEY);
+//     const id = decodedVerifyToken._id;
+//     const user = await UserModel.findByIdAndUpdate(id, { isVerified: true });
+//     // D2 Seite!!!
+//     // res.send({ message: "email ist verifiziert" });
+//     res.redirect(`/userLoginD2`);
+//   } catch (error) {
+//     res.status(500).send({ message: error.message });
+//   }
+// };
+
+// GET Verify email und Antwort
 export const getVerifyEmail = async (req, res) => {
   try {
     const verifyToken = req.params.token;
     const decodedVerifyToken = jwt.verify(verifyToken, JWT_KEY);
     const id = decodedVerifyToken._id;
     const user = await UserModel.findByIdAndUpdate(id, { isVerified: true });
-    // D2 Seite!!!
-    // res.send({ message: "email ist verifiziert" });
-    res.redirect(`/userLoginD2`);
+
+    sgMail.setApiKey(SENDGRID_API_KEY);
+    const mailmessage = {
+      to: user.email,
+      from: SENDGRID_EMAIL, // Change to your verified sender
+      subject: "Email Verifizierung erfolgreich",
+      text: `deine Email Verifizierung war erfolgreich!`,
+
+      html:`
+      <div> 
+      <p> Hallo ${newUser.firstName}, </p>
+      <p> deine Email Verifizierung war erfolgreich! </p>
+      <p> Vielen Dank dafür und viel Spaß mit <strong>dieP@rty</strong>! </p>
+      <p>Liebe Grüße<br>Carola</p>
+      </div>`,
+    };
+
+    const response = await sgMail.send(mailmessage);
+    console.log("response von sendgrid", response);
+
   } catch (error) {
     res.status(500).send({ message: error.message });
   }
