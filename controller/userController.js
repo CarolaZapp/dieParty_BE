@@ -194,9 +194,12 @@ export const getVerifyEmail = async (req, res) => {
       <p>Liebe Grüße<br>Carola</p>
       </div>`,
     };
+// ?????
 
-    sgMail.send(mailmessage);
+const respo = await sgMail.send(mailmessage);
+console.log("response von sendgrid", respo);
 
+res.redirect(`/userLoginD2`);
 
   } catch (error) {
     res.status(500).send({ message: error.message });
