@@ -195,10 +195,8 @@ export const getVerifyEmail = async (req, res) => {
       </div>`,
     };
 
-    sgMail.send(mailmessage)
-    .then(() => {
-      console.log("Confirm email send");
-    })
+    sgMail.send(mailmessage);
+
 
   } catch (error) {
     res.status(500).send({ message: error.message });
