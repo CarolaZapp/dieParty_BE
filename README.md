@@ -45,6 +45,9 @@ Guest lists & response management complete the package
 - upload storage:
   - firebase
 
+- deployment:
+  - IONOS Cloud server
+
 - frontend:
   - html5
   - css3
