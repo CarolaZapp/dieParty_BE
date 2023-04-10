@@ -5,14 +5,14 @@ import auth from "../middleware/auth.js";
 // import controller functions
 import {
   getInvitation,
-  // getUserInvitation, // Idee 
+  getUserInvitation, // Idee 
   postOneInvitation,
 } from "../controller/invitationController.js";
 
 // Routes
-// router.route("/").get(auth, getInvitation).post(auth, postOneInvitation);
-router.route("/").post(auth, postOneInvitation);
+router.route("/").get(auth, getInvitation).post(auth, postOneInvitation);
+// router.route("/").post(auth, postOneInvitation);
 
-router.route("/:eventId").get(getInvitation);
+router.route("/:eventId").get(getUserInvitation);
 
 export default router;
