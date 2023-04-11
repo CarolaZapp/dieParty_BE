@@ -6,8 +6,11 @@ export const getInvitation = async (req, res, next) => {
   try {
     const user = await UserModel.findById(req.token.userId);
     const eventId = user.events;
+console.log("getInvitation eventId:", eventId);
     const event = await EventModel.findById(eventId);
+console.log("getInvitation event:", event);
     const invitation = event.invitation;
+console.log("getInvitation invitation:",invitation);
     res.status(200).send(invitation);
   } catch (error) {
     next(error);
@@ -17,7 +20,8 @@ export const getInvitation = async (req, res, next) => {
 // GET - find one invitation
 // export const getInvitation = async (req, res, next) => {
 //   try {
-//     const event = await EventModel.findById(req.params.eventId);
+//     const event = await EventModel.findById(req.params.id); // ???? warum funktioniert das nicht!
+// console.log("getInvitation event:", event);
 //     const invitation = event.invitation;
 //     res.status(200).send(invitation);
 //   } catch (error) {
@@ -29,6 +33,7 @@ export const getInvitation = async (req, res, next) => {
 export const getUserInvitation = async (req, res, next) => {
   try {
     const event = await EventModel.findById(req.params.eventId);
+console.log("getUserInvitation event:", event);
     const userInvitation = event.invitation;
     res.status(200).send(userInvitation);
   } catch (error) {
