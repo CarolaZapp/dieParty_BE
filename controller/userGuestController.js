@@ -44,14 +44,14 @@ export const postOneUserGuest = async (req, res, next) => {
       to: newUserGuest.email,
       from: SENDGRID_EMAIL,
       subject: "Einladung",
-      text: `Zur Einladung bitte auf diese Adresse gehen:${HOST}/invitationUser/${eventId}/${userGuestId}`,
+      text: `Zur Einladung bitte auf diese Adresse gehen:${HOST}/invitationUserMail/${eventId}/${userGuestId}`,
 
 // Variante 1
       html: `
       <div> 
       <p> Hallo ${newUserGuest.firstName}, </p>
       <p> ich möchte Dich/Euch zu meinem Event einladen...</p>
-      <p><a href="${HOST}/invitationUser/${eventId}/${userGuestId}">Hier geht es zur Einladung...  </a> 
+      <p><a href="${HOST}/invitationUserMail/${eventId}/${userGuestId}">Hier geht es zur Einladung...  </a> 
       <br>viel Freude damit ... </p>
       <p>Liebe Grüße<br>${user.firstName}</p>
       </div>`,
