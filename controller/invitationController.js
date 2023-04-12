@@ -6,11 +6,8 @@ export const getInvitation = async (req, res, next) => {
   try {
     const user = await UserModel.findById(req.token.userId);
     const eventId = user.events;
-console.log("getInvitation eventId:", eventId);
     const event = await EventModel.findById(eventId);
-console.log("getInvitation event:", event);
     const invitation = event.invitation;
-console.log("getInvitation invitation:",invitation);
     res.status(200).send(invitation);
   } catch (error) {
     next(error);
